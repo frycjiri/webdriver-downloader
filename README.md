@@ -2,7 +2,7 @@
 
 > Work in progress
 
-Node.js library for automatic downloading of selected versions (or latest) of opera/chrome/firefox drivers.
+Node.js library for automatic downloading of selected versions (or latest) for opera/chrome/firefox drivers.
 
 ## How to use
 
