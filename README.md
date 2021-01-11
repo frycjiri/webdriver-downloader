@@ -1,4 +1,4 @@
-# Webdriver manager
+# Webdriver downloader
 
 > Work in progress
 
@@ -7,9 +7,9 @@ Node.js library for automatic downloading of selected versions (or latest) for o
 ## How to use
 
 ```javascript
-await WebdriverManager.firefox().setup();
-await WebdriverManager.chrome().setup();
-await WebdriverManager.opera().setup();
+await WebdriverDownloader.firefox().setup();
+await WebdriverDownloader.chrome().setup();
+await WebdriverDownloader.opera().setup();
 ```
 
 ### How to change downloaded version of driver
@@ -17,5 +17,5 @@ await WebdriverManager.opera().setup();
 ```javascript
 var options = new DriverOptions();
 options.version = '88.0.4324.27';
-await WebdriverManager.chrome(options).setup();
+await WebdriverDownloader.chrome(options).setup();
 ```

@@ -4,7 +4,7 @@ import { FirefoxManager } from './firefox';
 import { OperaManager } from './opera';
 import { ChromeManager } from './chrome';
 
-export default class WebdriverManager {
+export default class WebdriverDownloader {
   public static firefox(options: DriverOptions = new DriverOptions()): DriverManager {
     return new FirefoxManager(options);
   }
