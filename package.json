@@ -2,6 +2,14 @@
   "name": "webdriver-downloader",
   "version": "0.9.0",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frycjiri/webdriver-downloader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/frycjiri/webdriver-downloader/issues"
+  },
+  "homepage": "https://github.com/frycjiri/webdriver-downloader",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
