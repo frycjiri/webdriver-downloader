@@ -1,5 +1,6 @@
 import os from 'os';
 import fs from 'fs';
+import path from 'path';
 import { DriverOptions } from './driver_options';
 export enum Platform {
   Win,
@@ -14,8 +15,20 @@ export enum Arch {
 export abstract class DriverManager {
   platform: Platform;
   arch: Arch;
-  options: DriverOptions;
+  version: string;
+  path: string;
+
   public constructor(options: DriverOptions) {
+    if (options.path === null || options.path === undefined) {
+      this.path = path.resolve(__dirname, 'drivers');
+    } else {
+      this.path = options.path;
+    }
+    if (options.version === null || options.version === undefined) {
+      this.version = 'latest';
+    } else {
+      this.version = options.version;
+    }
     switch (os.platform()) {
       case 'darwin':
         this.platform = Platform.Mac;
@@ -36,10 +49,9 @@ export abstract class DriverManager {
         this.arch = Arch.x64;
         break;
     }
-    this.options = options;
-    if (!fs.existsSync(this.options.path)) {
-      fs.mkdirSync(this.options.path);
+    if (!fs.existsSync(this.path)) {
+      fs.mkdirSync(this.path);
     }
   }
-  public abstract setup(): Promise<void>;
+  public abstract download(): Promise<void>;
 }

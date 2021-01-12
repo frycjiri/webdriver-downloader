@@ -12,8 +12,8 @@ export class OperaManager extends DriverManager {
   private downloadLink(version: string): string {
     return this.downloadurl + version + '/operadriver';
   }
-  private async download() {
-    let version = this.options.version;
+  public async download() {
+    let version = this.version;
     if (version === 'latest' || version === '') {
       version = await got(this.baseurl + 'latest/').then((response) => {
         const dom = new JSDOM(response.body);
@@ -33,7 +33,7 @@ export class OperaManager extends DriverManager {
       else if (this.platform === Platform.Mac) url = this.downloadLink(version) + '_mac64.zip';
       else url = this.downloadLink(version) + '_win32.zip';
     }
-    const location = this.options.path;
+    const location = this.path;
     got
       .stream(url)
       .pipe(unzipper.Parse())
@@ -45,8 +45,5 @@ export class OperaManager extends DriverManager {
           entry.autodrain();
         }
       });
-  }
-  public async setup() {
-    if (this.options.download) await this.download();
   }
 }

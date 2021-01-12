@@ -23,8 +23,8 @@ export class ChromeManager extends DriverManager {
     if (version === undefined) return '88.0.4324.27';
     return version;
   }
-  public async setup() {
-    let version = this.options.version;
+  public async download() {
+    let version = this.version;
     if (version === 'latest' || version === '') {
       version = await this.getLatestVersion();
     }
@@ -32,6 +32,6 @@ export class ChromeManager extends DriverManager {
     if (this.platform === Platform.Linux) url += 'linux64.zip';
     else if (this.platform === Platform.Mac) url += 'mac64.zip';
     else url += 'win32.zip';
-    got.stream(url).pipe(unzipper.Extract({ path: this.options.path }));
+    got.stream(url).pipe(unzipper.Extract({ path: this.path }));
   }
 }

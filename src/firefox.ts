@@ -10,8 +10,8 @@ export class FirefoxManager extends DriverManager {
   private downloadLink(version: string): string {
     return this.downloadurl + version + '/geckodriver-' + version;
   }
-  private async download() {
-    let version = this.options.version;
+  public async download() {
+    let version = this.version;
     if (version === 'latest' || version === '') {
       version = await got(this.baseurl + 'latest/').then((response) => {
         const dom = new JSDOM(response.body);
@@ -31,9 +31,6 @@ export class FirefoxManager extends DriverManager {
       else if (this.platform === Platform.Mac) url = this.downloadLink(version) + '-macos.tar.gz';
       else url = this.downloadLink(version) + '-win32.zip';
     }
-    got.stream(url).pipe(unzipper.Extract({ path: this.options.path }));
-  }
-  public async setup() {
-    if (this.options.download) await this.download();
+    got.stream(url).pipe(unzipper.Extract({ path: this.path }));
   }
 }
